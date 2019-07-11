@@ -1,0 +1,17 @@
+.custom-navgroup li {
+  background-color: #343a40;
+  cursor: pointer;
+}
+  .custom-navgroup li:hover {
+    background-color: grey;
+  }
+
+.custom-navgroup li a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.active {
+  background-color: grey !important;
+  border-color: grey !important;
+}
