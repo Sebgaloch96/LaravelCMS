@@ -53,7 +53,8 @@ class PostsController extends Controller
             'content' => $request->content,
             'image' => $image,
             'published_at' => $request->published_at,
-            'category_id' => $request->category
+            'category_id' => $request->category,
+            'user_id' => auth()->user()->id
         ]);
 
         // Attach tags to post if any were selected
@@ -135,13 +136,14 @@ class PostsController extends Controller
     {
         $post = Post::withTrashed()->where('id', $id)->firstOrFail();
 
-        // Completely remove image from database and storage
+        
         if($post->trashed()){
+            // Completely remove image from database and storage
             $post->deleteImage();
             $post->forceDelete();
         }
-        // Only trash the image
         else{
+            // Only trash the image
             $post->delete();
         }
         
